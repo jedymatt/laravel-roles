@@ -6,19 +6,19 @@ Demonstration on how to create your own roles
 
 Good for single role user
 
-https://github.com/jedymatt/laravel-roles/tree/one-to-one
+<https://github.com/jedymatt/laravel-roles/tree/one-to-one>
 
 ## Many to Many
 
 Good for multiple role user
 
-https://github.com/jedymatt/laravel-roles/tree/many-to-many
+<https://github.com/jedymatt/laravel-roles/tree/many-to-many>
 
 ### Polymorphic Many to Many
 
 Good for multiple role user, and multiple users with different tables and guard (you can change or add middleware for different guards)
 
-https://github.com/jedymatt/laravel-roles/tree/polymorphic-many-to-many
+<https://github.com/jedymatt/laravel-roles/tree/polymorphic-many-to-many>
 
 ## Files Changed
 
