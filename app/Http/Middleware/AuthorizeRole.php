@@ -17,9 +17,7 @@ class AuthorizeRole
      */
     public function handle(Request $request, Closure $next, string ...$roles)
     {
-        $hasAnyRole = $request->user()->roles()->pluck('name')->intersect($roles)->isNotEmpty();
-
-        if (!$hasAnyRole) {
+        if ($request->user()->roles()->pluck('name')->intersect($roles)->isEmpty()) {
             abort(403, 'Unauthorized action.');
         }
 
