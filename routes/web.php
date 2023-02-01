@@ -18,7 +18,31 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $user = User::first();
 
+    // add admin role to user
     $user->roles()->sync(Role::first());
 
     dd($user->toArray(), $user->roles->toArray());
+});
+
+
+Route::get('/admin', function () {
+    return 'Admin';
+})->middleware('auth','role:admin');
+
+
+Route::get('/login', function () {
+    $user = User::first();
+
+    auth()->login($user);
+    request()->session()->regenerate();
+
+    return 'Logged in';
+});
+
+Route::get('/logout', function () {
+    auth()->logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+
+    return 'Logged out';
 });
