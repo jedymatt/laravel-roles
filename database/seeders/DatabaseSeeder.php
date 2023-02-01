@@ -22,17 +22,12 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\Role::factory()->create([
-            'name' => 'user',
-            'display_name' => 'User',
-        ]);
-
-        \App\Models\Role::factory()->create([
-            'name' => 'Admin',
+            'name' => 'admin',
             'display_name' => 'Administator',
         ]);
 
         \App\Models\Role::factory()->create([
-            'name' => 'Super Admin',
+            'name' => 'super-admin',
             'display_name' => 'Super Administator',
         ]);
     }
