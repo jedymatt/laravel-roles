@@ -20,6 +20,24 @@ Good for multiple role user, and multiple users with different tables and guard 
 
 <https://github.com/jedymatt/laravel-roles/tree/polymorphic-many-to-many>
 
+## Setup project
+
+```sh
+cp .env.example .env
+```
+
+```sh
+composer install
+```
+
+```sh
+php artisan migrate:fresh --seed
+```
+
+```sh
+php artisan serve
+```
+
 ## Files Changed
 
 - routes/web.php
