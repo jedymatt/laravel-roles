@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/home', function () {
+
+    auth()->user()->roles()->sync(Role::first());
+    dd(auth()->user()->toArray(), auth()->user()->roles->toArray());
+})->middleware(['auth.basic'])->name('home');
