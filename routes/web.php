@@ -18,17 +18,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $user = User::first();
 
+    // Set role to admin
     $user->role()->associate(Role::first());
     $user->save();
 
     dd($user->toArray(), $user->role->toArray());
 });
 
-Route::get('/home', function () {
+Route::get('/admin', function () {
     $user = auth()->user();
 
     dd($user->toArray(), $user->role->toArray());
-})->middleware('auth');
+})->middleware('auth', 'role:admin');
+
+Route::get('/super-admin', function () {
+    $user = auth()->user();
+
+    dd($user->toArray(), $user->role->toArray());
+})->middleware('auth', 'role:super-admin');
+
 
 Route::get('/login', function () {
     $user = User::first();
@@ -37,7 +45,7 @@ Route::get('/login', function () {
     request()->session()->regenerate();
 
     return 'Logged in';
-})->middleware('guest');
+});
 
 Route::get('/logout', function () {
     auth()->logout();
@@ -45,4 +53,4 @@ Route::get('/logout', function () {
     request()->session()->regenerateToken();
 
     return 'Logged out';
-})->middleware('auth');
+});
