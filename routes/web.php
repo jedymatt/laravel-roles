@@ -23,6 +23,18 @@ Route::get('/', function () {
     dd($user->toArray(), $user->roles->toArray());
 });
 
+Route::get('/admin', function () {
+    $user = auth()->user();
+
+    dd($user->toArray(), $user->roles->toArray());
+})->middleware('auth', 'role:admin');
+
+Route::get('/super-admin', function () {
+    $user = auth()->user();
+
+    dd($user->toArray(), $user->roles->toArray());
+})->middleware('auth', 'role:super-admin');
+
 Route::get('/login', function () {
     $user = User::first();
 
