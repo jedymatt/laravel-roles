@@ -34,7 +34,7 @@ Route::get('/admin', function () {
 Route::get('/super-admin', function () {
     $user = auth()->user();
 
-    dd($user->toArray(), $user->role->toArray());
+    dd($user->toArray(), $user->roles->toArray());
 })->middleware('auth', 'role:super-admin');
 
 Route::get('/login', function () {
