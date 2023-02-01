@@ -22,3 +22,20 @@ Route::get('/', function () {
 
     dd($user->toArray(), $user->roles->toArray());
 });
+
+Route::get('/login', function () {
+    $user = User::first();
+
+    auth()->login($user);
+    request()->session()->regenerate();
+
+    return 'Logged in';
+});
+
+Route::get('/logout', function () {
+    auth()->logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+
+    return 'Logged out';
+});
