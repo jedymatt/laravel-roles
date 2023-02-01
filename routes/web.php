@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -15,8 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $user = User::first();
+
+    $user->role()->associate(Role::first());
+    $user->save();
+
+    dd($user->toArray(), $user->role->toArray());
 });
+
+Route::get('/home', function () {
+    $user = auth()->user();
+
+    dd($user->toArray(), $user->role->toArray());
+})->middleware('auth');
 
 Route::get('/login', function () {
     $user = User::first();
@@ -25,7 +37,7 @@ Route::get('/login', function () {
     request()->session()->regenerate();
 
     return 'Logged in';
-});
+})->middleware('guest');
 
 Route::get('/logout', function () {
     auth()->logout();
@@ -33,4 +45,4 @@ Route::get('/logout', function () {
     request()->session()->regenerateToken();
 
     return 'Logged out';
-});
+})->middleware('auth');
