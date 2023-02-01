@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $user = User::first();
 
-    $user->roles()->sync(Role::find(2));
+    $user->roles()->sync(Role::first());
 
     dd($user->toArray(), $user->roles->toArray());
 });
